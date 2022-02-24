@@ -1,0 +1,22 @@
+# This docker-compose.yml can be used as a usage example
+# it is also used for clamscan-docker developements
+
+version: '3'
+
+services:
+
+
+  clamav:
+    build: ./image/
+    image: clamav:1
+    container_name: clamav
+    environment:
+      FRESHCLAM_AT_STARTUP: "1"
+      SCAN_AT_STARTUP: "1"
+      SCAN_ONLY_NEW_FILES: "1"
+      CRON_CLAMSCAN: "0 * * * *"
+    volumes:
+      - ./volumes/folder-to-scan/:/folder-to-scan/
+
+
+
